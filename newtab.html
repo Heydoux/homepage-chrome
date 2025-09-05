@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Nouvel onglet</title>
+    <link rel="stylesheet" href="newtab.css">
+</head>
+<body>
+    <div id="sidebar">
+        <button id="lockBtn">🔒 Lock</button>
+    </div>
+
+    <main id="main">
+        <h1>Hello World 🚀</h1>
+        <button id="openModal">+ Ajouter un raccourci</button>
+        <div id="shortcuts"></div>
+    </main>
+
+    <!-- Modal -->
+    <dialog id="modal" class="modal hidden">
+        <div class="modal-content">
+        <h2>Ajouter un raccourci</h2>
+        <input type="text" id="urlInput" placeholder="URL du site" />
+        <input type="text" id="imgInput" placeholder="URL de l'image" />
+        <div class="preview">
+            <label>Prévisualisation :</label>
+            <img id="imgPreview" src="" alt="Preview" />
+            <input type="range" id="zoomRange" min="50" max="150" value="100">
+        </div>
+        <button id="saveShortcut">Enregistrer</button>
+        <button id="closeModal">Fermer</button>
+        </div>
+    </dialog>
+
+    <script src="newtab.js"></script>
+</body>
+</html>
