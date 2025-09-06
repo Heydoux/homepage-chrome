@@ -11,9 +11,40 @@
     </div>
 
     <main id="main">
-        <h1>Hello World 🚀</h1>
-        <button id="openModal">+ Ajouter un raccourci</button>
-        <div id="shortcuts"></div>
+        <div id="datetime-temp">
+            <div id="datetime"></div>
+            <div id="temperature"></div>
+        </div>
+        <div id="shortcuts">
+            <div class="shortcut-row">
+                <div class="shortcut-box"><button class="add-btn" data-row="1">+</button></div>
+                <div class="shortcut-box"></div>
+                <div class="shortcut-box"></div>
+                <div class="shortcut-box"></div>
+                <div class="shortcut-box"></div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-box"><button class="add-btn" data-row="2">+</button></div>
+                <div class="shortcut-box"></div>
+                <div class="shortcut-box"></div>
+                <div class="shortcut-box"></div>
+                <div class="shortcut-box"></div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-box"><button class="add-btn" data-row="3">+</button></div>
+                <div class="shortcut-box"></div>
+                <div class="shortcut-box"></div>
+                <div class="shortcut-box"></div>
+                <div class="shortcut-box"></div>
+            </div>
+            <div class="shortcut-row">
+                <div class="shortcut-box"><button class="add-btn" data-row="4">+</button></div>
+                <div class="shortcut-box"></div>
+                <div class="shortcut-box"></div>
+                <div class="shortcut-box"></div>
+                <div class="shortcut-box"></div>
+            </div>
+        </div>
     </main>
 
     <!-- Modal -->
@@ -24,13 +55,16 @@
         <input type="text" id="imgInput" placeholder="URL de l'image" />
         <div class="preview">
             <label>Prévisualisation :</label>
-            <img id="imgPreview" src="" alt="Preview" />
+            <div class="preview-box">
+                <img id="imgPreview" src="" alt="Preview" />
+            </div>
             <input type="range" id="zoomRange" min="50" max="150" value="100">
         </div>
         <button id="saveShortcut">Enregistrer</button>
         <button id="closeModal">Fermer</button>
         </div>
     </dialog>
+
 
     <script src="newtab.js"></script>
 </body>
