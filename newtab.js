@@ -11,11 +11,13 @@ const lockBtn = document.getElementById("lockBtn");
 let isLocked = true;
 let selectedRow = null;
 let selectedCol = null;
+let editingShortcutId = null;
 
 // --- Modal control ---
 closeModalBtn.addEventListener("click", () => {
   modal.classList.add("hidden");
   modal.close();
+  editingShortcutId = null;
 });
 
 document.querySelectorAll('.add-btn').forEach((btn, idx) => {
@@ -48,12 +50,14 @@ saveBtn.addEventListener("click", () => {
     console.log("Raccourci ajouté :", shortcut);
     renderShortcuts();
     modal.classList.add("hidden");
+    modal.close();
     urlInput.value = "";
     imgInput.value = "";
     imgPreview.src = "";
     zoomRange.value = 100;
     selectedRow = null;
     selectedCol = null;
+    editingShortcutId = null;
   });
 });
 
@@ -76,7 +80,7 @@ function renderShortcuts() {
       rowDiv.className = "shortcut-row";
       let plusPlaced = false;
 
-      for (let col = 0; col < 5; col++) {
+      for (let col = 0; col < 6; col++) {
         const box = document.createElement("div");
         box.className = "shortcut-box";
 
@@ -91,6 +95,20 @@ function renderShortcuts() {
           link.textContent = "";
 
           if (!isLocked) {
+            link.addEventListener("click", (e) => {
+                e.preventDefault();
+                // Pré-remplir la modal avec les infos du raccourci
+                urlInput.value = sc.url;
+                imgInput.value = sc.img;
+                imgPreview.src = sc.img;
+                zoomRange.value = sc.zoom || 100;
+                imgPreview.style.transform = `scale(${zoomRange.value / 100})`;
+                selectedRow = row;
+                selectedCol = col;
+                editingShortcutId = sc.id;
+                modal.classList.remove("hidden");
+                modal.showModal();
+            });
             const delBtn = document.createElement("button");
             delBtn.textContent = "❌";
             delBtn.className = "delete-btn";
@@ -133,10 +151,10 @@ lockBtn.addEventListener("click", () => {
 // --- Date & Heure ---
 function updateDateTime() {
     const now = new Date();
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { month: 'short', day: 'numeric' };
     const dateStr = now.toLocaleDateString('fr-FR', options);
     const timeStr = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    document.getElementById('datetime').textContent = `${dateStr} ${timeStr}`;
+    document.getElementById('datetime').textContent = `${dateStr} - ${timeStr}`;
 }
 setInterval(updateDateTime, 1000);
 updateDateTime();
